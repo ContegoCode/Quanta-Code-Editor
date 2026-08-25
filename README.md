@@ -7,7 +7,7 @@ Quanta AI — Local-first AI coding agent
 ### A local-first, privacy-preserving AI code editor with a full agentic coding loop
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)]()
 [![Built with Rust](https://img.shields.io/badge/Built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
 [![Powered by Ollama](https://img.shields.io/badge/Powered%20by-Ollama-red.svg)](https://ollama.ai)
 
@@ -191,7 +191,7 @@ Unlike cloud-first AI editors, Quanta is designed around local inference. The ag
 
 ### Option 1: Pre-built Release (Recommended)
 
-Download the latest release for your platform from the [Releases](../../releases) page. Extract and run — no build tools required.
+Download the latest release from the [Releases](../../releases) page. Extract and run — no build tools required.
 
 ### Option 2: Build from Source
 
