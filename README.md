@@ -1,11 +1,3 @@
-<div align="center">
- 
-### Watch Quanta AI in Action
- 
-[![Watch the video](https://img.youtube.com/vi/lVotfX5wLFA/hqdefault.jpg)](https://www.youtube.com/shorts/lVotfX5wLFA)
- 
-</div>
-
 # Quanta-Code-Editor
 Quanta AI — Local-first AI coding agent
 <div align="center">
@@ -19,6 +11,13 @@ Quanta AI — Local-first AI coding agent
 [![Built with Rust](https://img.shields.io/badge/Built%20with-Rust-orange.svg)](https://www.rust-lang.org/)
 [![Powered by Ollama](https://img.shields.io/badge/Powered%20by-Ollama-red.svg)](https://ollama.ai)
 
+</div>
+<div align="center">
+ 
+### Watch Quanta AI in Action
+ 
+[![Watch the video](https://img.youtube.com/vi/lVotfX5wLFA/hqdefault.jpg)](https://www.youtube.com/shorts/lVotfX5wLFA)
+ 
 </div>
 
 ---
