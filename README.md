@@ -1,3 +1,11 @@
+<div align="center">
+ 
+### Watch Quanta AI in Action
+ 
+[![Watch the video](https://img.youtube.com/vi/lVotfX5wLFA/maxresdefault.jpg)](https://www.youtube.com/shorts/lVotfX5wLFA)
+ 
+</div>
+
 # Quanta-Code-Editor
 Quanta AI — Local-first AI coding agent
 <div align="center">
