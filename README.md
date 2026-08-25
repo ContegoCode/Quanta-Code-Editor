@@ -560,7 +560,7 @@ Plan files are saved to `.quanta/plans/` and persist across sessions.
 
 MIT License — see [LICENSE](Extension/LICENSE) for details.
 
-Copyright (c) 2025 Quanta AI
+Copyright (c) 2026 Quanta AI
 
 ---
 
