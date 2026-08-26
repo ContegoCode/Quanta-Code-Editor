@@ -1,6 +1,4 @@
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/quantaaieditor)
-# Quanta-Code-Editor
-Quanta AI — Local-first AI coding agent
 <div align="center">
 
 # Quanta AI Code Editor
