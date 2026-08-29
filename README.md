@@ -15,7 +15,7 @@
  
 ### Watch Quanta AI in Action
  
-[![Watch the video](https://img.youtube.com/vi/lVotfX5wLFA/hqdefault.jpg)](https://www.youtube.com/shorts/lVotfX5wLFA)
+[![Watch the video](https://img.youtube.com/vi/lVotfX5wLFA/hqdefault.jpg)](https://www.youtube.com/watch?v=YwJawdqkH7k)
  
 </div>
 
