@@ -811,6 +811,179 @@ Plan files are saved to `.quanta/plans/` and persist across sessions.
 
 ---
 
+<div align="center">
+ 
+# Quanta AI — + Add-ons
+ 
+### A unified plugin & extension system for the agent — six tabs, one overlay
+ 
+</div>
+ 
+---
+ 
+The **+ Add-ons** overlay is Quanta's central hub for extending the agent. It lives in the chat panel's feature menu ("+ Add-ons") and manages every extension primitive the agent supports: **plugins, skills, agents, hooks, commands, and MCP servers** — installed, browsed, created, analyzed, and removed without leaving the editor.
+ 
+## Overview
+ 
+| Tab | Purpose |
+|-----|---------|
+| 📦 **Installed** | Manage installed plugins, run conflict analysis, uninstall cleanly |
+| 🧩 **Plugins** | Browse plugin marketplaces, preview, and install |
+| ⚡ **Skills** | Manage local skills + browse a 19,000+ community registry |
+| 🤖 **Agents** | View and author subagent definitions |
+| 🪝 **Hooks** | Wire shell commands into agent lifecycle events |
+| ➕ **Add Custom** | Install a plugin from a local directory or `.zip` |
+ 
+Every component across all tabs is tracked with its **origin** — `built-in`, `global` (`~/.quanta/`), `project` (`.quanta/`), or `plugin:<name>` — shown as a color-coded badge on each card.
+ 
+---
+ 
+## 📦 Tab 1 — Installed
+ 
+Lists every installed plugin as a card with its metadata and contributed components.
+ 
+- **One-click uninstall** — removes the plugin *and* every component it registered (skills, agents, hooks, commands, MCP servers) via the plugin registry
+- **Source-aware removal** — component Remove buttons pin the exact layer (`project`/`global`/`plugin`) so same-named copies in other layers are never touched
+ 
+### 🩺 Conflict Analysis
+ 
+The **Analyze conflicts** button scans the entire add-on graph — skills, agents, hooks, commands, MCP servers, plugin registry records, and cross-plugin interactions — and reports findings in a collapsible section separate from the installed-plugin cards.
+ 
+**What it detects:**
+ 
+- **Duplicates** — identical content installed under two names
+- **Shadowing** — a project component silently overriding a global or plugin one
+- **Contradictions** — two components that conflict logically
+- **Dead config** — hooks/commands referencing things that no longer exist
+- **Stale records** — registry entries whose files are gone
+- **Cross-plugin collisions** — same component claimed by multiple plugins
+ 
+**Result UX:**
+ 
+- Deterministic findings vs. heuristic warnings are visually distinguished
+- Each finding carries an actionable fix: *Remove this copy* or *Uninstall plugin*
+- **Collapse** the list (header click) or **Hide** it entirely — it re-opens on the next analysis
+- Findings **auto-refresh** after any install, uninstall, or component removal
+- Header shows a live count: `· N findings` or `· clean`
+ 
+---
+ 
+## 🧩 Tab 2 — Plugins (Marketplace)
+ 
+Browse real plugins from the **Claude Code official marketplace** and any custom source you add.
+ 
+- **Search + category filter** across all registered marketplaces
+- **Custom marketplace sources** — add by local path or git URL (cloned on demand)
+- **Preview before install** — inspect a plugin's skills, agents, hooks, and commands before pulling it in
+- **Install** copies the plugin's components into your workspace under a `plugin_` namespace so they never collide with your own
+- Marketplace management: add, update, and remove sources
+ 
+### Plugin format
+ 
+```
+my-plugin/
+├── plugin.json          # Manifest (name, version, description, author)
+├── skills/              # Optional: skill directories
+│   └── my-skill/SKILL.md
+├── agents/              # Optional: agent .md definitions
+│   └── reviewer.md
+├── hooks.json           # Optional: hook config
+└── mcp.json             # Optional: MCP server configs
+```
+ 
+---
+ 
+## ⚡ Tab 3 — Skills
+ 
+Skills are reusable instruction packs the agent auto-loads by name or file trigger, and can invoke explicitly in chat.
+ 
+### My Skills
+ 
+- **Search** your full skill catalog
+- **+ Create** — author a skill inline (kebab-case name, description ≤60 chars, markdown body with frontmatter or `<skill_content>` tags)
+- **Import** — pull a skill from a folder or `.md` file on disk (symlinks and built-in overwrites rejected)
+- **Remove** — layer-pinned deletion; built-in and plugin-owned skills are protected
+ 
+### Browse Registry
+ 
+Powered by [agentskills.codes](https://agentskills.codes) — **19,296 community skills**, scanned daily with safety grades.
+ 
+- Full-text search + category filter (Coding, Productivity, Planning, Data & Analytics, Writing, Security, Design, Research, Communication)
+- One-click install — downloads as `SKILL.md` into `~/.quanta/skills/`
+- Hardened install path: name validation, zip-slip protection (`enclosed_name`), archive/entry size caps, and Windows-absolute-path rejection
+ 
+---
+ 
+## 🤖 Tab 4 — Agents
+ 
+Subagent definitions for delegated tasks.
+ 
+- **Built-ins:** `explore` (read-only research) and `general` (full tool access)
+- **+ Create** — define your own: name, description, tool whitelist (empty = all tools), optional model override, and a custom system prompt
+- Layers follow the standard precedence: project → global → built-in; removal is location-pinned so it never deletes the wrong same-named copy
+ 
+---
+ 
+## 🪝 Tab 5 — Hooks
+ 
+Hooks are shell commands that run automatically at agent lifecycle events.
+ 
+| Event | When it fires |
+|-------|---------------|
+| `PreToolUse` | Before a tool executes (matcher filters by tool name) |
+| `PostToolUse` | After a tool completes |
+| `SessionStart` | When a session begins — e.g. inject `git status` into context |
+| `UserPromptSubmit` | When the user submits a prompt |
+| `Stop` | When the agent finishes a run |
+| `PreCompact` | Before context compaction |
+ 
+- **Matcher** — restrict a hook to specific tools (`edit_file`, `terminal`, …) or leave empty for all
+- **`{{placeholders}}`** — `{{file_path}}`, `{{command}}`, and any `tool_input`/`tool_result` field are substituted from the hook's JSON payload at runtime
+- **One-click templates** — "Run tests after edits", "Auto-format Rust", "Git state at start", "Log terminal commands", "Notify on stop"
+- **Toggle without deleting** — enable/disable hooks individually across *both* project and global layers
+- **Safety** — empty commands and dangerous patterns are rejected at add-time
+ 
+---
+ 
+## ➕ Tab 6 — Add Custom
+ 
+Install a plugin straight from disk:
+ 
+- Point at a **local directory** or a **`.zip`** archive
+- Embedded **format reference** (click *Show plugin format*) — the tree above plus a minimal `plugin.json`
+- Safe extraction: path-traversal entries rejected, size limits enforced
+ 
+---
+ 
+## Slash-command integration
+ 
+Plugin commands are automatically surfaced as slash commands in chat. A plugin named `agent-skills` contributing `build.md` becomes `/agent-skills-build`, with `$ARGUMENTS` substitution for anything you type after the command. The command list refreshes on every plugin install/uninstall.
+ 
+## Architecture
+ 
+```
+Webview (6 tabs)  ──postMessage──▶  Extension host   ──JSON-RPC──▶  Rust backend
+   chatViewProvider.ts               chatViewProvider.ts              handlers/plugin_handler.rs
+                                     serverManager.ts                 plugins/{components,marketplace}.rs
+```
+ 
+- **Frontend** renders everything with DOM nodes + `textContent` — no `innerHTML` on third-party plugin data
+- **Backend** owns all filesystem access: plugin registry, component install/remove, marketplace cloning, hook toggling
+- **Filesystem layers:** `~/.quanta/` (global) and `<workspace>/.quanta/` (project); plugin components are namespaced `plugin_component` and recorded in the plugin registry for clean uninstall
+ 
+## Security model
+ 
+- Registry & marketplace names validated against path traversal before any disk operation
+- Zip extraction via `enclosed_name()` — no escape entries, 25 MB archive cap
+- Manifest `source`/`path` fields constrained to the marketplace root
+- Plugin-owned components can't be removed piecemeal — only via plugin uninstall (exact-name ownership check)
+ 
+---
+ 
+<div align="center">
+Built into Quanta AI — local-first, privacy-preserving agentic coding.
+</div>
+
 ## License
 
 MIT License — see [LICENSE](Extension/LICENSE) for details.
