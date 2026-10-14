@@ -13,7 +13,8 @@
 [![Built with Rust](https://img.shields.io/badge/Backend-Rust-orange.svg)](https://www.rust-lang.org/)
 [![Tauri 2](https://img.shields.io/badge/Shell-Tauri%202-24C8DB.svg)](https://v2.tauri.app)
 [![Powered by llama.cpp](https://img.shields.io/badge/Inference-llama.cpp-red.svg)](https://github.com/ggml-org/llama.cpp)
-[![Architecture](https://img.shields.io/badge/Crates-21-blueviolet.svg)]()
+[![Architecture](https://img.shields.io/badge/Crates-19-blueviolet.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-1776%20passing-brightgreen.svg)]()
 
 [![Support on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/quantaaieditor)
 
@@ -55,7 +56,7 @@ v2 isn't v1 with patches, and it isn't a VS Code fork with an AI sidebar bolted 
 
 - **No Electron. No VS Code OSS. No extension host.** The coupling every other "VS Code with AI" product inherits is gone — replaced by a purpose-built Tauri 2 shell that's faster, smaller, and owns exactly what it needs.
 - **Rust owns the truth** — the agent loop, document state, LSP lifecycle, debugger, sessions, and checkpoints are all backend-authoritative. The UI renders state; it never *is* the state.
-- **1,300+ tests** across the workspace — regression tests for the failure modes that actually hurt people (stale reads, lost edits, partial writes, session corruption)
+- **1,776 tests** across the workspace — regression tests for the failure modes that actually hurt people (stale reads, lost edits, partial writes, session corruption)
 - **Deterministic where it matters** — the repomap is a deterministic PageRank port, not "ask the model where things are." Freshness is verified by content hashes and version gates, not assumed.
 - **Honest by design** — dependency-gated tools *hide* when their runtime is missing instead of failing mid-turn; `debug_state` reports what the adapter said, never a guess; off-recipe media settings are labeled, not silently applied.
 - **Security that was added, not bolted on** — Ed25519-signed donor tokens (v1 skipped signature verification), memory threat-scanning on write *and* load, credential-path protection that no permission mode bypasses.
@@ -295,7 +296,7 @@ A free Quanta account is **required** to use the editor — registration keeps s
 │  └──────────────────────────┬───────────────────────────────┘  │
 │                             │ Tauri IPC (typed commands)       │
 │  ┌──────────────────────────┴───────────────────────────────┐  │
-│  │                Backend — Rust workspace (21 crates)      │  │
+│  │                Backend — Rust workspace (19 crates)      │  │
 │  │                                                          │  │
 │  │  agent ───── the ReAct loop, escalation, repetition      │  │
 │  │  tools ────── 40+ tools, permissions, approvals, sandbox │  │
