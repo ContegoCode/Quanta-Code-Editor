@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Frontend_UI/Graphics/4e59d123-a9b2-432f-8ca9-b73fa3b39b2e.png" alt="Quanta AI" />
+<img src="Graphics/4e59d123-a9b2-432f-8ca9-b73fa3b39b2e.png" alt="Quanta AI" />
 
 # Quanta AI Code Editor
 
